@@ -1,0 +1,35 @@
+{
+  "description": "Group images for every 50 rows",
+  "tasks": [
+    {
+      "name": "R00",
+      "description": "Row 0-49",
+      "rows": [0, 49]
+    },
+    {
+      "name": "R01",
+      "description": "Row 50-99", 
+      "rows": [50, 99]
+    },
+    {
+      "name": "R02",
+      "description": "Row 100-149",
+      "rows": [100, 149]
+    },
+    {
+      "name": "R03",
+      "description": "Row 150-199",
+      "rows": [150, 199]
+    },
+    {
+      "name": "R04",
+      "description": "Row 200-249",
+      "rows": [200, 249]
+    },
+    {
+      "name": "R05",
+      "description": "Row 250-272",
+      "rows": [250, 272]
+    }
+  ]
+}

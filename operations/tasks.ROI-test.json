@@ -1,0 +1,29 @@
+{
+  "description": "ROI-test",
+  "tasks": [
+    {
+      "name": "R00",
+      "description": "Row 0-49, Col 0-49",
+      "rows": [0, 49],
+      "cols": [0, 49]
+    },
+    {
+      "name": "R01",
+      "description": "Row 50-99, Cols 50-99", 
+      "rows": [50, 99],
+      "cols": [50, 99]
+    },
+    {
+      "name": "R02",
+      "description": "Row 100-149, Cols 100-120",
+      "rows": [100, 149],
+      "cols": [100, 120]
+    },
+    {
+      "name": "R03",
+      "description": "Row 150-199, Cols 150-120",
+      "rows": [150, 199],
+      "cols": [100, 120]
+    }
+  ]
+}

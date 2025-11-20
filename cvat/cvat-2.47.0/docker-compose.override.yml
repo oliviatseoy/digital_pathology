@@ -1,0 +1,35 @@
+services:
+  cvat_server:
+    environment:
+      - TZ=Asia/Hong_Kong
+    volumes:
+      - cvat_share:/home/django/share:ro
+  cvat_worker_import:
+    volumes:
+      - cvat_share:/home/django/share:ro
+  cvat_worker_export:
+    volumes:
+      - cvat_share:/home/django/share:ro
+  cvat_worker_annotation:
+    volumes:
+      - cvat_share:/home/django/share:ro
+  cvat_worker_chunks:
+    volumes:
+      - cvat_share:/home/django/share:ro
+
+volumes:
+  cvat_share:
+    driver_opts:
+      type: none
+      device: /NetApp/users/deeplearn/Projects/marrow_morphology/image_3dhistech/
+      o: bind
+  cvat_data:
+    driver_opts:
+      device: /NetApp/users/olivia/Projects/2025_digital_pathology/CVAT_production/cvat_data/
+      o: bind
+      type: none
+  cvat_db:
+    driver_opts:
+      device: /NetApp/users/olivia/Projects/2025_digital_pathology/CVAT_production/cvat_db/
+      o: bind
+      type: none

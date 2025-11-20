@@ -1,0 +1,636 @@
+[
+  {
+    "name": "ORTHO NORM",
+    "description": "Polychromatic/orthochromatic normoblast",
+    "color": "#b4b9ff",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "ORTHO NORM-DYS",
+    "description": "P/Ortho normo-Dysplastic",
+    "color": "#8097aa",
+    "type": "mask",
+    "attributes": [
+      {
+        "name": "Dyserythropoiesis: Cytoplasmic vacuolation",
+        "input_type": "checkbox",
+        "mutable": false,
+        "values": [
+          "false"
+        ],
+        "default_value": "false"
+      },
+      {
+        "name": "Dyserythropoiesis: Nuclear irregularity",
+        "input_type": "checkbox",
+        "mutable": false,
+        "values": [
+          "false"
+        ],
+        "default_value": "false"
+      },
+      {
+        "name": "Dyserythropoiesis: Nuclear budding",
+        "input_type": "checkbox",
+        "mutable": false,
+        "values": [
+          "false"
+        ],
+        "default_value": "false"
+      },
+      {
+        "name": "Dyserythropoiesis: Karyorrhexis",
+        "input_type": "checkbox",
+        "mutable": false,
+        "values": [
+          "false"
+        ],
+        "default_value": "false"
+      },
+      {
+        "name": "Dyserythropoiesis: Internuclear bridging",
+        "input_type": "checkbox",
+        "mutable": false,
+        "values": [
+          "false"
+        ],
+        "default_value": "false"
+      },
+      {
+        "name": "Dyserythropoiesis: Nuclear cytoplasmic asynchrony",
+        "input_type": "checkbox",
+        "mutable": false,
+        "values": [
+          "false"
+        ],
+        "default_value": "false"
+      }
+    ]
+  },
+  {
+    "name": "BAS NORM",
+    "description": "Basophilic normoblast",
+    "color": "#4c5cfa",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "BAS NORM-DYS",
+    "description": "Basophilic normoblast-Dysplastic",
+    "color": "#51586b",
+    "type": "mask",
+    "attributes": [
+      {
+        "name": "Dyserythropoiesis: Cytoplasmic vacuolation",
+        "input_type": "checkbox",
+        "mutable": false,
+        "values": [
+          "false"
+        ],
+        "default_value": "false"
+      },
+      {
+        "name": "Dyserythropoiesis: Nuclear irregularity",
+        "input_type": "checkbox",
+        "mutable": false,
+        "values": [
+          "false"
+        ],
+        "default_value": "false"
+      },
+      {
+        "name": "Dyserythropoiesis: Nuclear budding",
+        "input_type": "checkbox",
+        "mutable": false,
+        "values": [
+          "false"
+        ],
+        "default_value": "false"
+      },
+      {
+        "name": "Dyserythropoiesis: Karyorrhexis",
+        "input_type": "checkbox",
+        "mutable": false,
+        "values": [
+          "false"
+        ],
+        "default_value": "false"
+      },
+      {
+        "name": "Dyserythropoiesis: Internuclear bridging",
+        "input_type": "checkbox",
+        "mutable": false,
+        "values": [
+          "false"
+        ],
+        "default_value": "false"
+      },
+      {
+        "name": "Dyserythropoiesis: Nuclear cytoplasmic asynchrony",
+        "input_type": "checkbox",
+        "mutable": false,
+        "values": [
+          "false"
+        ],
+        "default_value": "false"
+      }
+    ]
+  },
+  {
+    "name": "PROERY",
+    "description": "Proerythroblast",
+    "color": "#1100ff",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "PROERY-DYS",
+    "description": "Proerythroblasts-Dysplastic",
+    "color": "#525273",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "GIANT PRO",
+    "description": "Giant proerythroblast",
+    "color": "#000489",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "NEU",
+    "description": "Neutrophil",
+    "color": "#e29bc0",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "NEU-DYS",
+    "description": "Neutrophil-Dysplastic",
+    "color": "#ab8cab",
+    "type": "mask",
+    "attributes": [
+      {
+        "name": "Hypogranular neutrophil",
+        "input_type": "checkbox",
+        "mutable": false,
+        "values": [
+          "false"
+        ],
+        "default_value": "false"
+      },
+      {
+        "name": "Hyposegmented neutrophil",
+        "input_type": "checkbox",
+        "mutable": false,
+        "values": [
+          "false"
+        ],
+        "default_value": "false"
+      }
+    ]
+  },
+  {
+    "name": "BAND",
+    "description": "Band form",
+    "color": "#f8c0a6",
+    "type": "mask",
+    "attributes": [
+      {
+        "name": "Giant band form",
+        "input_type": "checkbox",
+        "mutable": false,
+        "values": [
+          "false"
+        ],
+        "default_value": "false"
+      }
+    ]
+  },
+  {
+    "name": "META",
+    "description": "Metamyelocyte",
+    "color": "#fb9f77",
+    "type": "mask",
+    "attributes": [
+      {
+        "name": "Giant metamyelocyte",
+        "input_type": "checkbox",
+        "mutable": false,
+        "values": [
+          "false"
+        ],
+        "default_value": "false"
+      }
+    ]
+  },
+  {
+    "name": "MYE",
+    "description": "Myelocyte",
+    "color": "#ff6868",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "MYE-EOS",
+    "description": "Eosinophilic myelocyte",
+    "color": "#ef4bff",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "PROMYE",
+    "description": "Promyelocyte",
+    "color": "#c72222",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "EOS",
+    "description": "Eosinophil",
+    "color": "#ff6a4d",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "ABN EOS",
+    "description": "Abnormal eosinophil",
+    "color": "#102094",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "BASO",
+    "description": "Basophil",
+    "color": "#6a009e",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "MONO",
+    "description": "Monocyte",
+    "color": "#33ddff",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "BLAST",
+    "description": "Blast",
+    "color": "#ff0000",
+    "type": "mask",
+    "attributes": [
+      {
+        "name": "Blast-Auer rod",
+        "input_type": "checkbox",
+        "mutable": false,
+        "values": [
+          "false"
+        ],
+        "default_value": "false"
+      }
+    ]
+  },
+  {
+    "name": "MONOBL",
+    "description": "",
+    "color": "#206a6e",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "PROMON",
+    "description": "Promonocyte",
+    "color": "#2babb6",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "ABN PRO",
+    "description": "Abnormal promyelocyte",
+    "color": "#ff007c",
+    "type": "mask",
+    "attributes": [
+      {
+        "name": "Faggot cell",
+        "input_type": "checkbox",
+        "mutable": false,
+        "values": [
+          "false"
+        ],
+        "default_value": "false"
+      }
+    ]
+  },
+  {
+    "name": "LYM",
+    "description": "Lymphocyte",
+    "color": "#ae30ea",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "ABN LYM S",
+    "description": "Small abnormal lymphoid cell",
+    "color": "#d12ffd",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "ABN LYM L",
+    "description": "Large abnormal lymphoid cell",
+    "color": "#df00fd",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "ACT LYM",
+    "description": "Activated lymphoid cell",
+    "color": "#3d3df5",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "LP",
+    "description": "Lymphoplasmacytic cell",
+    "color": "#c935c6",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "GONES",
+    "description": "Haematogone",
+    "color": "#742487",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "HAIRY",
+    "description": "Hairy cell",
+    "color": "#661c80",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "PC",
+    "description": "Plasma cell",
+    "color": "#8c78f0",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "ABN PC",
+    "description": "Abn plasma cell",
+    "color": "#5986b3",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "HIS",
+    "description": "Histiocyte",
+    "color": "#e4ebf1",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "HAEMOPHAGOCYTOSIS",
+    "description": "Histiocyte-Haemophagocytosis",
+    "color": "#f8f2d5",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "HIS-INC",
+    "description": "Histiocytes-Inclusion",
+    "color": "#fae8d0",
+    "type": "mask",
+    "attributes": [
+      {
+        "name": "Histiocyte-Debris-laden",
+        "input_type": "checkbox",
+        "mutable": false,
+        "values": [
+          "false"
+        ],
+        "default_value": "false"
+      }
+    ]
+  },
+  {
+    "name": "HIS-SEA BLUE",
+    "description": "Sea blue histiocyte",
+    "color": "#b2f6ef",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "MAST",
+    "description": "Mast cell",
+    "color": "#6271d6",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "ABN MAST",
+    "description": "Abnormal mast cell",
+    "color": "#b03580",
+    "type": "mask",
+    "attributes": [
+      {
+        "name": "Mast cell: large",
+        "input_type": "checkbox",
+        "mutable": false,
+        "values": [
+          "false"
+        ],
+        "default_value": "false"
+      },
+      {
+        "name": "Mast cell: hypogranular",
+        "input_type": "checkbox",
+        "mutable": false,
+        "values": [
+          "false"
+        ],
+        "default_value": "false"
+      },
+      {
+        "name": "Mast cell: spindle shaped",
+        "input_type": "checkbox",
+        "mutable": false,
+        "values": [
+          "false"
+        ],
+        "default_value": "false"
+      }
+    ]
+  },
+  {
+    "name": "MEGA-Normal",
+    "description": "Megakaryocyte-Normal",
+    "color": "#733380",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "MEGA-L hyper",
+    "description": "Megakaryocyte-Large hyperlobulated",
+    "color": "#75c2af",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "MEGA-S hypo",
+    "description": "Megakaryocyte-Small hypolobated",
+    "color": "#fb3dd3",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "MEGA-nuc sep",
+    "description": "Megakaryocyte-Nuclear separation",
+    "color": "#0805bc",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "MEGA-Micro",
+    "description": "Megakaryocyte-Micromegakaryocyte",
+    "color": "#b91928",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "MEGA-BARE",
+    "description": "Bare megakaryocytic nucleus",
+    "color": "#e60ee8",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "MEGA-YOUNG",
+    "description": "Young megakaryocyte",
+    "color": "#4d4dd6",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "OSB",
+    "description": "Osteoblast",
+    "color": "#38ad50",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "OSC",
+    "description": "Osteoclast",
+    "color": "#13d6b3",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "RBC",
+    "description": "Red blood cell",
+    "color": "#ecc0a3",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "PLT",
+    "description": "Platelet",
+    "color": "#d4d592",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "OTH",
+    "description": "Other cell",
+    "color": "#b921aa",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "SMUDGE",
+    "description": "Disintegrated/ smudge cell",
+    "color": "#b6a8ff",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "NDC",
+    "description": "Non-distinguishable cell",
+    "color": "#1a6080",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "ICC",
+    "description": "Incomplete cell",
+    "color": "#39187a",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "OLC",
+    "description": "Overlapping cells",
+    "color": "#b39922",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "CLOT",
+    "description": "Fibrin clot",
+    "color": "#18c132",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "STAIN",
+    "description": "Stain precipitate",
+    "color": "#5d950d",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "ART",
+    "description": "Artefact",
+    "color": "#c22311",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "NON-HAEMIC",
+    "description": "Non-haematolymphoid malignant cell",
+    "color": "#16d021",
+    "type": "mask",
+    "attributes": []
+  },
+  {
+    "name": "NCC",
+    "description": "No nucleated cell",
+    "color": "#4f25db",
+    "type": "tag",
+    "attributes": []
+  },
+  {
+    "name": "PAR",
+    "description": "Particle",
+    "color": "#c2f26d",
+    "type": "tag",
+    "attributes": []
+  },
+  {
+    "name": "NAT",
+    "description": "Not annotated",
+    "color": "#4c98f6",
+    "type": "tag",
+    "attributes": []
+  },
+  {
+    "name": "NSR",
+    "description": "Non-slide region",
+    "color": "#697be8",
+    "type": "tag",
+    "attributes": []
+  }
+]
