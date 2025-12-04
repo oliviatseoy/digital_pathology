@@ -606,15 +606,15 @@
     "attributes": []
   },
   {
-    "name": "NCC",
-    "description": "No nucleated cell",
-    "color": "#4f25db",
+    "name": "NNC",
+    "description": "No nucleated cells",
+    "color": "#d4c9f8",
     "type": "tag",
     "attributes": []
   },
   {
     "name": "PAR",
-    "description": "Particle",
+    "description": "Marrow particles",
     "color": "#c2f26d",
     "type": "tag",
     "attributes": []
@@ -630,6 +630,13 @@
     "name": "NSR",
     "description": "Non-slide region",
     "color": "#697be8",
+    "type": "tag",
+    "attributes": []
+  },
+  {
+    "name": "EDGE",
+    "description": "Cellular areas near slide edge",
+    "color": "#99e6c7",
     "type": "tag",
     "attributes": []
   }

@@ -4,6 +4,7 @@
 
 ```bash
 conda create -n cvat_2.47.0 conda-forge::cvat-cli=2.47.0 conda-forge::cvat-sdk=2.47.0 anaconda::jupyter --solver libmamba
+conda install anaconda::pandas
 ```
 
 ```bash
