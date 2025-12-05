@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[2]:
 
 
 import argparse
@@ -31,34 +31,56 @@ class Cvat_Stat():
 
         self.completed_jobs = {} # dict task_id -> job_id
         self.project_labels = {} # dict label_id -> (label_name, label_type)
+        
         self.job_label_counter = {} # dict job_id -> label_id -> count
+        self.job_label_any_attr_counter = {} # dict job_id -> label_id -> count with any attribute checked
+        self.job_label_each_attr_counter = {} # dict job_id -> (label_id, attribute_id) -> count
+
         self.merged_label_counter = {} # dict label_id -> count
-        #self.label_counter = {} # dict label_type(mask/tag) ->  label_name -> count
+        self.merged_label_any_attr_counter = {} # dict label_id -> count with any attribute checked
+        self.merged_label_each_attr_counter = {} # dict (label_id, attribute_id) -> count
 
         # Main
         self.stat_labels()
 
     def stat_labels(self):
-        self.project_labels = self._get_label_name(self.project_id)
+        self.project_labels = self._get_project_label(self.project_id)
         self.completed_jobs = self._get_completed_jobs(self.project_id)
+
+        # Reset 
+        self.job_label_counter = {} # dict job_id -> label_id -> count
+        self.job_label_any_attr_counter = {} # dict job_id -> label_id -> count with any attribute checked
+        self.job_label_each_attr_counter = {} # dict job_id -> (label_id, attribute_id) -> count
+        self.merged_label_counter = {} # dict label_id -> count
+        self.merged_label_any_attr_counter = {} # dict label_id -> count with any attribute checked
+        self.merged_label_each_attr_counter = {} # dict (label_id, attribute_id) -> count
+
         for (task_id, job_ids) in self.completed_jobs.items():
             #task_name = self._get_task_name(task_id)
             for job_id in job_ids:
-                self.job_label_counter[job_id] = self._retrieve_annotation(job_id)
+                self.job_label_counter[job_id], self.job_label_any_attr_counter[job_id], self.job_label_each_attr_counter[job_id] = self._retrieve_annotation(job_id)
                 for (label_id, count) in self.job_label_counter[job_id].items():
                     self.merged_label_counter[label_id] = self.merged_label_counter.get(label_id, 0) + count
+                for (label_id, count) in self.job_label_any_attr_counter[job_id].items():
+                    self.merged_label_any_attr_counter[label_id] = self.merged_label_any_attr_counter.get(label_id, 0) + count
+                for ((label_id, attr_id), count) in self.job_label_each_attr_counter[job_id].items():
+                    self.merged_label_each_attr_counter[(label_id, attr_id)] = self.merged_label_each_attr_counter.get((label_id, attr_id), 0) + count
 
     def get_summary_table(self):
         summary_rows = []
-        mask_label_ids = [k for (k, v) in self.project_labels.items() if v[1]=='mask']
-        mask_label_names = [v[0] for (k, v) in self.project_labels.items() if v[1]=='mask']
-        tag_label_ids = [k for (k, v) in self.project_labels.items() if v[1]=='tag']
-        tag_label_names = [v[0] for (k, v) in self.project_labels.items() if v[1]=='tag']
+        mask_label_ids = [k for (k, v) in self.project_labels.items() if v['type']=='mask']
+        mask_label_names = [v['name'] for (k, v) in self.project_labels.items() if v['type']=='mask']
+        tag_label_ids = [k for (k, v) in self.project_labels.items() if v['type']=='tag']
+        tag_label_names = [v['name'] for (k, v) in self.project_labels.items() if v['type']=='tag']
+        
         for (task_id, job_ids) in self.completed_jobs.items():
             task_name = self._get_task_name(task_id)
             for job_id in job_ids:
                 job_detail = self._get_job_detail(job_id)
                 label_counts = self.job_label_counter[job_id]
+                label_any_attr_counts = self.job_label_any_attr_counter[job_id]
+                label_each_attr_counts = self.job_label_each_attr_counter[job_id]
+
                 row = {
                     'task_id': task_id,
                     'task_name': task_name,
@@ -69,11 +91,16 @@ class Cvat_Stat():
                     'mask_count': sum(v for (k,v) in label_counts.items() if k in mask_label_ids),
                     'tag_count': sum(v for (k,v) in label_counts.items() if k in tag_label_ids)
                 }
-                
-                for label_id, label_name in zip(mask_label_ids, mask_label_names):
-                    row[label_name] = label_counts.get(label_id, 0)
-                for label_id, label_name in zip(tag_label_ids, tag_label_names):
-                    row[label_name] = label_counts.get(label_id, 0)
+
+                for label_type in ('mask', 'tag'):
+                    for (label_id, label_dat) in self.project_labels.items():
+                        if label_dat['type'] == label_type:
+                            label_name = label_dat['name']
+                            row[label_name] = label_counts.get(label_id, 0)
+                            if 'attributes' in label_dat:
+                                row[f"{label_name}(attr)"] = label_any_attr_counts.get(label_id, 0)
+                                for (attr_id, attr_name) in label_dat['attributes'].items():
+                                    row[f"{label_name}[{attr_name}]"] = label_each_attr_counts.get((label_id, attr_id), 0)
                 summary_rows.append(row)
         df_summary_job = pd.DataFrame(summary_rows)
         df_summary_job.sort_values('job_id', inplace=True)
@@ -93,16 +120,23 @@ class Cvat_Stat():
         return df_summary
 
     # Projects
-    def _get_label_name(self, project_id):
+    def _get_project_label(self, project_id):
         try:
-            project_labels = {}
+            project_labels = {} # dict label_id -> {name: label_name, type: label_type, attributes: dict attribute_id -> attribute name}
             page = 1
             while True:
                 (data, response) = self.api_client.labels_api.list(project_id=project_id, page=page, page_size=100)
                 for label in data['results']:
-                    project_labels[label.id] = (label.name, label.type)
+                    project_labels[label.id] = {
+                        'name':label.name, 
+                        'type':label.type
+                        }
+                    if label['attributes']:
+                        project_labels[label.id]['attributes'] = {}
+                        for attr in label['attributes']:
+                            project_labels[label.id]['attributes'][attr['id']] = attr['name']
                 if not data['next']:
-                    assert len(project_labels) == data['count']
+                    assert len(project_labels) == data['count'], f"len(project_labels)={len(project_labels)} != data['count'] {data['count']}"
                     break
                 page += 1 
             return project_labels
@@ -158,14 +192,26 @@ class Cvat_Stat():
             print("Exception when calling JobsApi.retrieve(): %s\n" % e)
  
     def _retrieve_annotation(self, job_id):
-        label_counter_job= {}
+        label_counter_job= {} # dict label_id -> count
+        label_any_attr_counter_job = {} # dict label_id -> annotation count of label_id with any attributes checked
+        label_each_attr_counter_job = {} # dict (label_id, attribute_id) -> annnotation count
         try:
             (data, response) = self.api_client.jobs_api.retrieve_annotations(job_id)
             for data_type in ('tags', 'shapes'):
                 for annot in data[data_type]:
                     label_id = annot['label_id']
                     label_counter_job[label_id] = label_counter_job.get(label_id, 0) + 1
-            return label_counter_job
+                    # Process labels with attributes
+                    if annot['attributes']:
+                        is_any_attr_checked = False # if any of the attributes is checked
+                        for attr in annot['attributes']:
+                            if attr['value'] == "true":
+                                k = (label_id, attr['spec_id'])
+                                label_each_attr_counter_job[k] = label_each_attr_counter_job.get(k, 0) + 1
+                                is_any_attr_checked = True
+                        if is_any_attr_checked:
+                            label_any_attr_counter_job[label_id] = label_any_attr_counter_job.get(label_id, 0) + 1
+            return label_counter_job, label_any_attr_counter_job, label_each_attr_counter_job
         except exceptions.ApiException as e:
             print("Exception when calling JobsApi.retrieve_annotations(): %s\n" % e)
         
@@ -187,6 +233,9 @@ def main(args):
 
     cvat_stat = Cvat_Stat(CVAT_URL, CVAT_USERNAME, CVAT_PASSWORD, args.project_id)
     df_summary = cvat_stat.get_summary_table()
+    if args.do_not_output_attributes:
+        cols_xattr = [x for x in df_summary.columns if ("(attr)" not in x) and ("[" not in x)]
+        df_summary = df_summary[cols_xattr]
     df_summary.to_csv(args.output_file, sep="\t", index=None)
 
 if __name__ == "__main__":
@@ -194,6 +243,7 @@ if __name__ == "__main__":
     parser.add_argument('--cvat_config', required=True)
     parser.add_argument('--project_id', type=int, required=True)
     parser.add_argument('--output_file', required=True)
+    parser.add_argument('--do_not_output_attributes', action='store_true')
     #arguments = parser.parse_args("--cvat_config /home/olivia/cvat_config.json --project_id 1 --output_file haha.txt".split())
     arguments = parser.parse_args()
     main(arguments)

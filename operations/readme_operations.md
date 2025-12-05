@@ -35,3 +35,8 @@
   - `cvat-cli --org <org_slug> --server-host http://localhost --server-port 8080 --auth <user>:<password> task create <taskname> share /<path-relative-to-CVAT-share-path> --project_id 25  --segment_size 10`
 - Delete project:
   - `cvat-cli  --org <org_slug> --server-host http://localhost --server-port 8080 --auth <user>:<password> project delete <project_id>`
+- Export task annotation
+  - COCO 1.0 format
+    - `cvat-cli --org <org_slug> --server-host http://localhost:8080 --auth <user>:<password> task export-dataset --format "COCO 1.0" <task_id> <output_prefix>.coco10.zip`
+  - CVAT 1.1 format
+    - `cvat-cli --org <org_slug> --server-host http://localhost:8080 --auth <user>:<password> task export-dataset --format "CVAT for images 1.1" <task_id> <output_prefix>.cvat11.zip`
