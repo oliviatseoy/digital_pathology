@@ -29,6 +29,20 @@
 - Script: [cvat_summarize_annotation_labels.py](./04_annotation_stat/cvat_summarize_annotation_labels.py)
   - `/NetApp/users/olivia/anaconda3/envs/cvat_2.47.0/bin/python cvat_summarize_annotation_labels.py --cvat_config /home/olivia/cvat_config.json --project_id 1 --output_file /NetApp/users/deeplearn/Projects/marrow_morphology/cvat_annotation_stat/annotation_label_stat.$(date +"%Y%m%d_%H%M").txt`
 
+## Export dataset
+
+### Export jobs
+
+- Export completed jobs with mask count > 0
+  - Script: [export_job_dataset.sh](./05_export_annotation/export_job_dataset/export_job_dataset.sh)
+- Pack images and COCO files for share
+  - Script: [pack_exported_files_for_share.sh](./05_export_annotation/export_job_dataset/pack_exported_files_for_share.sh)
+
+### Export tasks via CVAT-CLI
+
+- Script: [export_task_dataset.sh](./05_export_annotation/export_task_dataset/export_task_dataset.sh)
+- `bash export_task_dataset.sh <task ids separated by space>`
+
 ## CVAT CLI
 
 - Create task:
